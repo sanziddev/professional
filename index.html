@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanzid Rana — Digital Marketing Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: #1e1e1e;
+    --accent: #ff4d00;
+    --accent2: #ffbe0b;
+    --text: #f0ede8;
+    --muted: #666;
+    --card: #131313;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s, height 0.2s, background 0.2s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s, height 0.3s;
+    opacity: 0.5;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.35;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.55rem 1.4rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent2); color: #000; transform: translateY(-1px); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 4rem;
+    padding-top: 90px;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    bottom: -2rem;
+    right: -2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22vw;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,77,0,0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--accent);
+  }
+  h1.hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 7vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  h1.hero-name .line2 { color: var(--accent); }
+  .hero-title {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: #999;
+    max-width: 480px;
+    margin: 1.2rem 0 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-title strong { color: var(--text); font-weight: 500; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+  .btn-primary:hover { color: #000; }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.9rem 2.2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--accent);
+    line-height: 1;
+    display: flex; align-items: flex-start;
+    gap: 2px;
+  }
+  .stat-num sup { font-size: 1.2rem; margin-top: 4px; }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Hero Right - Avatar card */
+  .hero-right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .avatar-card {
+    width: 360px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .avatar-card-inner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .avatar-initials {
+    width: 120px; height: 120px;
+    background: linear-gradient(135deg, var(--accent) 0%, #ff8c42 100%);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 0 0 8px rgba(255,77,0,0.08), 0 0 0 16px rgba(255,77,0,0.04);
+  }
+  .avatar-status {
+    position: absolute;
+    bottom: 4px; right: 8px;
+    width: 16px; height: 16px;
+    background: #22c55e;
+    border-radius: 50%;
+    border: 3px solid var(--card);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+  }
+  .avatar-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.3rem;
+  }
+  .avatar-role {
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .avatar-badges {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .badge.hot { border-color: var(--accent); color: var(--accent); }
+  .avatar-card-footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 1rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .avail-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  .avail-text { font-size: 0.72rem; font-family: 'Space Mono', monospace; color: #22c55e; }
+  .card-hire {
+    font-size: 0.7rem;
+    font-family: 'Space Mono', monospace;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .card-hire:hover { text-decoration: underline; }
+  .deco-lines {
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    border-top: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    pointer-events: none;
+  }
+  .deco-lines2 {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60px; height: 60px;
+    border-bottom: 2px solid rgba(255,77,0,0.3);
+    border-left: 2px solid rgba(255,77,0,0.3);
+    pointer-events: none;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 4rem; position: relative; }
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-tag::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+  h2.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  h2.section-title span { color: var(--accent); }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 3.5rem;
+    font-weight: 300;
+  }
+
+  /* SERVICES */
+  #services { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--card);
+    padding: 2.2rem;
+    position: relative;
+    transition: background 0.25s;
+    overflow: hidden;
+  }
+  .service-card:hover { background: #161616; }
+  .service-card:hover .service-icon { background: var(--accent); color: #fff; }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,77,0,0.1);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.25s;
+  }
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .service-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .service-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 1.2rem;
+  }
+  .stag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border);
+    color: #555;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--bg); }
+  .skills-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+  .skill-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .skill-item {}
+  .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .skill-name { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text); }
+  .skill-pct { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); letter-spacing: 1px; }
+  .skill-bar { height: 3px; background: var(--border); position: relative; }
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+    position: relative;
+    animation: fillBar 1.5s ease forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @keyframes fillBar {
+    to { transform: scaleX(1); }
+  }
+  .skill-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: -2px;
+    width: 7px; height: 7px;
+    background: var(--accent2);
+    border-radius: 50%;
+  }
+  .certs-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.4rem 1.8rem;
+    display: flex; align-items: center; gap: 1.2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent); transform: translateX(4px); }
+  .cert-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .cert-title { font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--text); letter-spacing: 0.5px; }
+  .cert-issuer { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .cert-badge { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--accent); background: rgba(255,77,0,0.08); padding: 0.2rem 0.5rem; white-space: nowrap; }
+
+  /* TOOLS */
+  #tools { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .tools-marquee-wrap { overflow: hidden; margin-bottom: 1rem; }
+  .tools-track {
+    display: flex; gap: 1.5rem;
+    animation: marquee 22s linear infinite;
+    width: max-content;
+  }
+  .tools-track2 { animation-direction: reverse; animation-duration: 28s; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .tool-pill {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.7rem 1.4rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tool-pill:hover { border-color: var(--accent); color: var(--accent); }
+  .tool-icon { font-size: 1rem; }
+
+  /* PROCESS */
+  #process { background: var(--bg); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 12%;
+    width: 76%; height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+    z-index: 0;
+  }
+  .process-step { position: relative; z-index: 1; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.6rem;
+  }
+  .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* TESTIMONIAL */
+  #testimonials { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .testi-card:hover { transform: translateY(-4px); border-color: rgba(255,77,0,0.3); }
+  .testi-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    line-height: 0.6;
+    color: var(--accent);
+    opacity: 0.25;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .testi-text { font-size: 0.9rem; color: #aaa; line-height: 1.7; font-weight: 300; margin-bottom: 1.5rem; }
+  .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+  .author-avatar {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .author-name { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text); }
+  .author-role { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  .stars { color: var(--accent2); font-size: 0.75rem; margin-bottom: 0.8rem; }
+
+  /* CTA */
+  #cta {
+    background: var(--bg);
+    text-align: center;
+    padding: 7rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #cta::before {
+    content: 'HIRE ME';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24vw;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,77,0,0.04);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .cta-content { position: relative; z-index: 1; }
+  .cta-avail {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: #22c55e;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(34,197,94,0.2);
+  }
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 7rem);
+    letter-spacing: 3px;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+  }
+  .cta-title span { color: var(--accent); }
+  .cta-desc { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; font-weight: 300; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-info {
+    margin-top: 4rem;
+    display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
+  }
+  .contact-item { display: flex; align-items: center; gap: 0.75rem; }
+  .contact-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .contact-value { font-size: 0.9rem; color: var(--text); }
+
+  /* FOOTER */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 3px; color: var(--muted); }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 1px; }
+  .footer-socials { display: flex; gap: 1rem; }
+  .social-link {
+    width: 34px; height: 34px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+  .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Divider */
+  .divider { width: 100%; height: 1px; background: var(--border); }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    .hero-right { order: -1; }
+    .avatar-card { width: 100%; max-width: 360px; }
+    section { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .skills-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .testi-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">SR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Digital Marketing Strategist</div>
+    <h1 class="hero-name">
+      Sanzid<br><span class="line2">Rana</span>
+    </h1>
+    <p class="hero-title">
+      I help <strong>E-commerce brands & coaches</strong> scale with
+      high-converting video content, social media growth systems &
+      <strong>paid advertising</strong> — 5+ years of proven results.
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Let's Work Together</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5<sup>+</sup></div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div>
+        <div class="stat-num">150<sup>+</sup></div>
+        <div class="stat-label">Clients Served</div>
+      </div>
+      <div>
+        <div class="stat-num">98<sup>%</sup></div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="avatar-card">
+      <div class="deco-lines"></div>
+      <div class="deco-lines2"></div>
+      <div class="avatar-card-inner">
+        <div class="avatar-initials">SR<div class="avatar-status"></div></div>
+        <div class="avatar-name">Sanzid Rana</div>
+        <div class="avatar-role">Full-Time Freelancer · Certified</div>
+        <div class="avatar-badges">
+          <span class="badge hot">SEO</span>
+          <span class="badge hot">Facebook Ads</span>
+          <span class="badge">Google Ads</span>
+          <span class="badge">Shopify</span>
+          <span class="badge">WordPress</span>
+        </div>
+      </div>
+      <div class="avatar-card-footer">
+        <span><span class="avail-dot"></span><span class="avail-text">Available for Projects</span></span>
+        <a href="#cta" class="card-hire">Hire Now →</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bg-text">SR</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What I Do</div>
+  <h2 class="section-title">My <span>Services</span></h2>
+  <p class="section-sub">Specialized digital marketing services tailored to scale your brand and maximize ROI.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">📱</div>
+      <div class="service-name">Social Media Marketing</div>
+      <p class="service-desc">Strategic growth systems for Facebook, Instagram & Twitter. Organic reach, community building, and viral content strategies.</p>
+      <div class="service-tags"><span class="stag">Facebook</span><span class="stag">Instagram</span><span class="stag">Twitter</span></div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">🎯</div>
+      <div class="service-name">Paid Advertising</div>
+      <p class="service-desc">High-ROI Google & Facebook Ads campaigns. Full-funnel strategy with Pixel setup, Conversion API, and advanced tracking.</p>
+      <div class="service-tags"><span class="stag">Google Ads</span><span class="stag">Facebook Ads</span><span class="stag">Retargeting</span></div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">🔍</div>
+      <div class="service-name">Search Engine Optimization</div>
+      <p class="service-desc">Rank higher, drive organic traffic. On-page, off-page, and technical SEO that delivers long-term sustainable growth.</p>
+      <div class="service-tags"><span class="stag">On-Page</span><span class="stag">Technical</span><span class="stag">Link Building</span></div>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon">🛍️</div>
+      <div class="service-name">E-Commerce Marketing</div>
+      <p class="service-desc">End-to-end e-commerce growth for Shopify & WooCommerce stores. Product launch strategies, cart abandonment recovery & more.</p>
+      <div class="service-tags"><span class="stag">Shopify</span><span class="stag">WooCommerce</span><span class="stag">CRO</span></div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">🌐</div>
+      <div class="service-name">Website Development</div>
+      <p class="service-desc">Custom WordPress & Shopify sites built with Elementor. Fast, mobile-optimized, and conversion-focused designs.</p>
+      <div class="service-tags"><span class="stag">WordPress</span><span class="stag">Elementor</span><span class="stag">Shopify</span></div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">📊</div>
+      <div class="service-name">Tracking & Analytics</div>
+      <p class="service-desc">Pixel installation, Conversion API setup, and complete analytics dashboards. Know your numbers, scale what works.</p>
+      <div class="service-tags"><span class="stag">FB Pixel</span><span class="stag">CAPI</span><span class="stag">GA4</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS MARQUEE -->
+<section id="tools">
+  <div class="section-tag">Tech Stack</div>
+  <h2 class="section-title">Tools I <span>Master</span></h2>
+  <br>
+  <div class="tools-marquee-wrap">
+    <div class="tools-track">
+      <div class="tool-pill"><span class="tool-icon">📘</span> Facebook Ads Manager</div>
+      <div class="tool-pill"><span class="tool-icon">🔴</span> Google Ads</div>
+      <div class="tool-pill"><span class="tool-icon">📊</span> Google Analytics 4</div>
+      <div class="tool-pill"><span class="tool-icon">🔷</span> Meta Business Suite</div>
+      <div class="tool-pill"><span class="tool-icon">🛒</span> Shopify</div>
+      <div class="tool-pill"><span class="tool-icon">🌐</span> WordPress</div>
+      <div class="tool-pill"><span class="tool-icon">⚡</span> Elementor</div>
+      <div class="tool-pill"><span class="tool-icon">🔍</span> Ahrefs</div>
+      <div class="tool-pill"><span class="tool-icon">📈</span> SEMrush</div>
+      <div class="tool-pill"><span class="tool-icon">📱</span> Buffer</div>
+      <!-- repeat for seamless loop -->
+      <div class="tool-pill"><span class="tool-icon">📘</span> Facebook Ads Manager</div>
+      <div class="tool-pill"><span class="tool-icon">🔴</span> Google Ads</div>
+      <div class="tool-pill"><span class="tool-icon">📊</span> Google Analytics 4</div>
+      <div class="tool-pill"><span class="tool-icon">🔷</span> Meta Business Suite</div>
+      <div class="tool-pill"><span class="tool-icon">🛒</span> Shopify</div>
+      <div class="tool-pill"><span class="tool-icon">🌐</span> WordPress</div>
+      <div class="tool-pill"><span class="tool-icon">⚡</span> Elementor</div>
+      <div class="tool-pill"><span class="tool-icon">🔍</span> Ahrefs</div>
+      <div class="tool-pill"><span class="tool-icon">📈</span> SEMrush</div>
+      <div class="tool-pill"><span class="tool-icon">📱</span> Buffer</div>
+    </div>
+  </div>
+  <div class="tools-marquee-wrap" style="margin-top:0.8rem">
+    <div class="tools-track tools-track2">
+      <div class="tool-pill"><span class="tool-icon">📌</span> Pinterest Ads</div>
+      <div class="tool-pill"><span class="tool-icon">🎬</span> TikTok Ads</div>
+      <div class="tool-pill"><span class="tool-icon">💌</span> Mailchimp</div>
+      <div class="tool-pill"><span class="tool-icon">🔗</span> Klaviyo</div>
+      <div class="tool-pill"><span class="tool-icon">🖥️</span> ClickFunnels</div>
+      <div class="tool-pill"><span class="tool-icon">🤖</span> Zapier</div>
+      <div class="tool-pill"><span class="tool-icon">📡</span> Pixel Helper</div>
+      <div class="tool-pill"><span class="tool-icon">🧩</span> GTM</div>
+      <div class="tool-pill"><span class="tool-icon">💡</span> Canva</div>
+      <div class="tool-pill"><span class="tool-icon">🗂️</span> Notion</div>
+      <div class="tool-pill"><span class="tool-icon">📌</span> Pinterest Ads</div>
+      <div class="tool-pill"><span class="tool-icon">🎬</span> TikTok Ads</div>
+      <div class="tool-pill"><span class="tool-icon">💌</span> Mailchimp</div>
+      <div class="tool-pill"><span class="tool-icon">🔗</span> Klaviyo</div>
+      <div class="tool-pill"><span class="tool-icon">🖥️</span> ClickFunnels</div>
+      <div class="tool-pill"><span class="tool-icon">🤖</span> Zapier</div>
+      <div class="tool-pill"><span class="tool-icon">📡</span> Pixel Helper</div>
+      <div class="tool-pill"><span class="tool-icon">🧩</span> GTM</div>
+      <div class="tool-pill"><span class="tool-icon">💡</span> Canva</div>
+      <div class="tool-pill"><span class="tool-icon">🗂️</span> Notion</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Expertise</div>
+  <h2 class="section-title">Core <span>Skills</span></h2>
+  <p class="section-sub">Built through 5+ years of hands-on work with real clients and real budgets.</p>
+  <div class="skills-layout">
+    <div class="skill-list">
+      <div class="skill-item reveal">
+        <div class="skill-header"><span class="skill-name">Facebook & Instagram Ads</span><span class="skill-pct">95%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-item reveal reveal-delay-1">
+        <div class="skill-header"><span class="skill-name">Search Engine Optimization</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item reveal reveal-delay-2">
+        <div class="skill-header"><span class="skill-name">Social Media Marketing</span><span class="skill-pct">95%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-item reveal reveal-delay-3">
+        <div class="skill-header"><span class="skill-name">Google Ads (PPC)</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item reveal reveal-delay-4">
+        <div class="skill-header"><span class="skill-name">E-Commerce Strategy</span><span class="skill-pct">92%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+      </div>
+      <div class="skill-item reveal">
+        <div class="skill-header"><span class="skill-name">WordPress & Shopify</span><span class="skill-pct">88%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-item reveal reveal-delay-1">
+        <div class="skill-header"><span class="skill-name">Conversion Tracking / CAPI</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+    </div>
+    <div class="certs-grid reveal">
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-title">Certified Social Media Marketing Professional</div>
+          <div class="cert-issuer">Professional Certification Body</div>
+        </div>
+        <span class="cert-badge">VERIFIED</span>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🎯</div>
+        <div>
+          <div class="cert-title">Meta Certified Digital Marketing Associate</div>
+          <div class="cert-issuer">Meta Blueprint</div>
+        </div>
+        <span class="cert-badge">CERTIFIED</span>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔍</div>
+        <div>
+          <div class="cert-title">Google Ads Search Certification</div>
+          <div class="cert-issuer">Google Skillshop</div>
+        </div>
+        <span class="cert-badge">ACTIVE</span>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📈</div>
+        <div>
+          <div class="cert-title">HubSpot Digital Marketing Certification</div>
+          <div class="cert-issuer">HubSpot Academy</div>
+        </div>
+        <span class="cert-badge">ACTIVE</span>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🌐</div>
+        <div>
+          <div class="cert-title">SEO Fundamentals Certification</div>
+          <div class="cert-issuer">SEMrush Academy</div>
+        </div>
+        <span class="cert-badge">ACTIVE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-tag">How I Work</div>
+  <h2 class="section-title">My <span>Process</span></h2>
+  <p class="section-sub">A proven 4-step framework that consistently delivers measurable growth for every client.</p>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Discovery & Audit</div>
+      <p class="step-desc">Deep-dive into your brand, audience, and current performance. Identifying gaps and biggest opportunities for growth.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="step-num">02</div>
+      <div class="step-title">Strategy Build</div>
+      <p class="step-desc">Custom marketing blueprint: channels, messaging, budget allocation, and KPIs tailored to your specific goals.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="step-num">03</div>
+      <div class="step-title">Launch & Execute</div>
+      <p class="step-desc">Hands-on campaign setup, creative production, tracking installation, and content system deployment.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="step-num">04</div>
+      <div class="step-title">Optimize & Scale</div>
+      <p class="step-desc">Data-driven iteration and scaling. Weekly reporting, A/B testing, and continuous improvement for maximum ROI.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-tag">Client Reviews</div>
+  <h2 class="section-title">What Clients <span>Say</span></h2>
+  <p class="section-sub">Real results from real clients across e-commerce, coaching, and service businesses.</p>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <span class="testi-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Sanzid completely transformed our Facebook ad performance. Our ROAS went from 1.8x to 4.2x within 6 weeks. The Conversion API setup alone saved so much lost data. Exceptional work!</p>
+      <div class="testi-author">
+        <div class="author-avatar">JM</div>
+        <div>
+          <div class="author-name">James Mitchell</div>
+          <div class="author-role">Founder, Niche Apparel Brand</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <span class="testi-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Our coaching business went from 0 to 3,000 followers in 2 months with a fully booked calendar. Sanzid's social media system is the real deal. Will definitely work together again.</p>
+      <div class="testi-author">
+        <div class="author-avatar">SR</div>
+        <div>
+          <div class="author-name">Sarah Rahman</div>
+          <div class="author-role">Business & Life Coach</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <span class="testi-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">The SEO strategy delivered incredible results. We went from page 4 to page 1 for our main keywords in 3 months, and organic traffic increased by 180%. Highly recommended!</p>
+      <div class="testi-author">
+        <div class="author-avatar">DK</div>
+        <div>
+          <div class="author-name">David Kim</div>
+          <div class="author-role">Owner, E-Commerce Store</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-content">
+    <div class="cta-avail"><span class="avail-dot"></span> Available for New Projects</div>
+    <h2 class="cta-title">Ready to<br><span>Scale Your</span><br>Business?</h2>
+    <p class="cta-desc">Let's build a digital marketing strategy that drives real, measurable growth for your brand.</p>
+    <div class="cta-btns">
+      <a href="mailto:crazysanzid@gmail.com" class="btn-primary">📧 Send Me a Message</a>
+      <a href="https://wa.me/8801703333028" class="btn-ghost">💬 WhatsApp Me</a>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">crazysanzid@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Bangladesh (Remote Worldwide)</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div class="contact-label">Response Time</div>
+          <div class="contact-value">Within 24 hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SR<span>.</span></div>
+  <div class="footer-copy">© 2025 Sanzid Rana · Digital Marketing Strategist</div>
+  <div class="footer-socials">
+    <a href="#" class="social-link">in</a>
+    <a href="#" class="social-link">fb</a>
+    <a href="#" class="social-link">ig</a>
+    <a href="#" class="social-link">tw</a>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) *.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      ring.style.width = '52px'; ring.style.height = '52px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      ring.style.width = '36px'; ring.style.height = '36px';
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => obs.observe(el));
+
+  // Skill bar animation on scroll
+  const skillBars = document.querySelectorAll('.skill-fill');
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animation = 'fillBar 1.4s ease forwards';
+      }
+    });
+  }, { threshold: 0.3 });
+  skillBars.forEach(bar => { bar.style.transform = 'scaleX(0)'; skillObs.observe(bar); });
+</script>
+</body>
+</html>
